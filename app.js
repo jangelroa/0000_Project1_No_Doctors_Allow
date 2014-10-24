@@ -1,0 +1,122 @@
+var express = require("express"),
+	pg = require("pg"),
+	bodyParser = require("body-parser"),
+	methodOverride = require("method-override"),
+	bcrypt = require("bcrypt"),
+	//models = require("./models/index.js"),
+    // ejs-locals, for layouts
+    engine = require('ejs-locals'),
+    flash = require('connect-flash'),
+    session = require("cookie-session");
+	// Modules to use with Passport
+var passport = require("passport"),
+    localStrategy = require("passport-local").Strategy;
+
+var app = express();
+
+app.set("view engine", "ejs");
+
+// this is different from setting the view engine
+// it enables the layout functionality
+app.engine('ejs', engine);
+
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+
+app.use(methodOverride("_method"));
+
+app.use(express.static(__dirname + '/public'));
+
+// enable the session
+// the session needs a key
+// with which to encode the session values
+// exposed to us by require('connect-flash')
+app.use(session({
+  keys: ['key']
+}));
+
+app.use(flash());
+
+// Modules to use with Passport
+var passport = require("passport"),
+    localStrategy = require("passport-local").Strategy;
+
+// Setup passport
+app.use(session( {
+  secret: 'thisismysecretkey',
+  name: 'chocolate chip',
+  maxage: 3600000
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+    models.User.find({
+        where: {
+            id: id
+        }
+    }).done(function(error,user){
+        done(error, user);
+    });
+});
+
+
+app.set("view engine", "ejs");
+
+// use body parser to use req.body.
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+/********************************************************************************/
+/********************************************************************************/
+
+
+
+
+
+
+
+
+/********************************************************************************/
+/********************************************************************************/
+
+app.listen(3000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
