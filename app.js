@@ -3,7 +3,7 @@ var express = require("express"),
 	bodyParser = require("body-parser"),
 	methodOverride = require("method-override"),
 	bcrypt = require("bcrypt"),
-	//models = require("./models/index.js"),
+	//models = require("./models/index.js"), // this will break until I create models
     // ejs-locals, for layouts
     engine = require('ejs-locals'),
     flash = require('connect-flash'),
@@ -26,7 +26,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(methodOverride("_method"));
 
-app.use(express.static(__dirname + '/public'));
 
 // enable the session
 // the session needs a key
@@ -75,12 +74,25 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(express.static(__dirname + '/assets'));
+
 /********************************************************************************/
 /********************************************************************************/
 
 
+// *** ROOT ***
+app.get("/", function(req, res){
+	res.render("index.ejs");
+});
 
+app.post('/', function(req,res) {
+	console.log(req.body.search_string);	
+});
 
+// *** LOGIN ***
+app.get("/login", function(req, res){
+	res.render("login.ejs");
+});
 
 
 
