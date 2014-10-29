@@ -3,7 +3,7 @@ var express = require("express"),
 	bodyParser = require("body-parser"),
 	methodOverride = require("method-override"),
 	bcrypt = require("bcrypt"),
-	//models = require("./models/index.js"), // this will break until I create models
+	models = require("./models/index.js"), // this will break until I create models
     // ejs-locals, for layouts
     engine = require('ejs-locals'),
     flash = require('connect-flash'),

@@ -1,0 +1,25 @@
+my_models_creation
+
+sequelize model:create --name User --attributes firstname:string,lastname:string,username:string,password:string
+
+sequelize model:create --name Question --attributes title:string,body:string,qu_user_id:integer
+
+sequelize model:create --name Answer --attributes an_body:string,an_user_id:integer
+
+sequelize model:create --name Favorited_question --attributes fq_user_id:integer,fq_question_id:integer
+
+sequelize model:create --name Voted_question --attributes vq_user_id:integer,vq_question_id:integer
+
+sequelize model:create --name Favorited_answer --attributes fa_user_id:integer,fa_answer_id:integer
+
+sequelize model:create --name Voted_answer --attributes va_user_id:integer,va_answer_id:integer
+
+
+
+
+
+
+
+
+
+
