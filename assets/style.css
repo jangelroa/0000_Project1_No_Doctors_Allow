@@ -1,12 +1,3 @@
-
-.container {
-
-}
-
-.navbar-collapse.colapse {
-	background-color: green;
-}
-
 @font-face {
     font-family: 'YourFontName'; /*a name to be used later*/
     src: url('/badaboom_bb/BADABB__.ttf'); /*URL to font*/
@@ -15,8 +6,9 @@
 a.navbar-brand {
     font-family: 'YourFontName', 'Arial';
 }
-h4 {
-	color: red;
+
+.container {
+
 }
 
 #brand {

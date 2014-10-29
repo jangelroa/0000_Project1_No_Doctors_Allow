@@ -79,6 +79,8 @@ app.use(express.static(__dirname + '/assets'));
 /********************************************************************************/
 /********************************************************************************/
 
+// MY HEROKU ADDRESS IS https://obscure-savannah-8786.herokuapp.com/
+
 
 // *** ROOT ***
 app.get("/", function(req, res){
@@ -93,6 +95,8 @@ app.post('/', function(req,res) {
 app.get("/login", function(req, res){
 	res.render("login.ejs");
 });
+
+
 
 
 
