@@ -1,0 +1,55 @@
+<% layout ('layout') %>
+<!-- Modal -->
+	<div class="modal-dialog margin-top-100">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Create a new User Account</h4>
+			</div>
+      <form method="post" action="/signup">
+        <div class="modal-body">
+          <h4>First Name</h4>
+          <div class="margin-top-20">
+            <input name="firstname" 
+              id="man-first-name" 
+              class="form-control"
+              placeholder="First Name"
+              type="text" />
+          </div>
+          <h4 class="margin-top-20">Last Name</h4>
+          <div class="margin-top-20">
+            <input 
+              name="lastname"
+              id="man-last-name" 
+              class="form-control"
+              placeholder="Last Name"
+              type="text" />
+          </div>
+          <h4 class="margin-top-20">Username</h4>
+          <div class="margin-top-20">
+            <input 
+              name="username"
+              id="prop-address" 
+              class="form-control"
+              placeholder="Username" 
+              type="text" />
+          </div>
+          <h4 class="margin-top-20">Password</h4>
+          <div class="margin-top-20">
+            <input 
+              name="password"
+              id="prop-address" 
+              class="form-control"
+              placeholder="Password"
+              type="password" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn" href="/login">LogIn</a>
+          <button id="save-manager" type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+      </form>
+		</div>
+	</div>
+<!--/Modal-->
+

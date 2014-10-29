@@ -83,21 +83,22 @@ app.use(express.static(__dirname + '/assets'));
 
 
 // *** ROOT ***
-app.get("/", function(req, res){
-	res.render("index.ejs");
-});
-
-app.post('/', function(req,res) {
-	console.log(req.body.search_string);	
-});
+		app.get("/", function(req, res){
+			res.render("index.ejs");
+		});
+		app.post('/', function(req,res) {
+			console.log(req.body.search_string);	
+		});
 
 // *** LOGIN ***
-app.get("/login", function(req, res){
-	res.render("login.ejs");
-});
+		app.get("/login", function(req, res){
+			res.render("login.ejs");
+		});
 
-
-
+// *** SIGNUP ***
+		app.get("/signup", function(req, res){
+			res.render("signup.ejs");
+		});
 
 
 
