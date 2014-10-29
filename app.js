@@ -86,6 +86,7 @@ app.use(express.static(__dirname + '/assets'));
 		app.get("/", function(req, res){
 			res.render("index.ejs");
 		});
+
 		app.post('/', function(req,res) {
 			console.log(req.body.search_string);	
 		});
@@ -95,9 +96,30 @@ app.use(express.static(__dirname + '/assets'));
 			res.render("login.ejs");
 		});
 
+		app.post('/login', function(req,res) {
+			console.log(req.body.username, req.body.password);
+			res.render("login.ejs");
+		});
+
 // *** SIGNUP ***
 		app.get("/signup", function(req, res){
 			res.render("signup.ejs");
+		});
+
+		app.post('/signup', function(req,res) {
+			console.log(req.body.firstname, req.body.lastname, 
+						req.body.username, req.body.password );	
+			res.render("signup.ejs");
+		});
+
+// *** QUESTIONS ***
+		app.get("/questions", function(req, res){
+			res.render("questions.ejs");
+		});
+
+// *** QUESTION ***
+		app.get("/question", function(req, res){
+			res.render("question.ejs");
 		});
 
 

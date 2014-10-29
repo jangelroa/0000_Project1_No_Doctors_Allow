@@ -8,9 +8,10 @@ a.navbar-brand {
 }
 
 .container {
-
+	margin-top: 60px;
 }
 
 #brand {
 	font-size: 2em;
 }
+
