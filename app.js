@@ -81,44 +81,87 @@ app.use(express.static(__dirname + '/assets'));
 
 // MY HEROKU ADDRESS IS https://obscure-savannah-8786.herokuapp.com/
 
+// var isAuthenticated = false;
 
 // *** ROOT ***
 		app.get("/", function(req, res){
-			res.render("index.ejs");
+			// the user goes to the main page always (authenticated or not)
+			res.redirect("/main");
 		});
 
 		app.post('/', function(req,res) {
-			console.log(req.body.search_string);	
+		});
+
+// *** MAIN ***
+		app.get("/main", function(req, res){
+			res.render("index.ejs");
+		});
+
+		app.post('/main', function(req,res) {
+			console.log(req.body.search_string);
+			// get the "search_string", get the search keys from it, 
+			// query those keys in "title" in the "Question" table,
+			// and redirect to "/questions" and show the questions selected
+			// res.redirect("/questions");	
+			res.render("questions.ejs",{ });
 		});
 
 // *** LOGIN ***
 		app.get("/login", function(req, res){
-			res.render("login.ejs");
+			// if user is authenticated redirect to "/main"
+			// else render "login.ejs"
+			if(req.isAuthenticated()) {
+				console.log("user is AUTHENTICATED");
+				res.redirect("/main");
+			} else {
+				res.render("login.ejs");
+			}
 		});
 
-		app.post('/login', function(req,res) {
-			console.log(req.body.username, req.body.password);
-			res.render("login.ejs");
-		});
+		app.post("/login", passport.authenticate("local", {
+		    successRedirect: "/main",
+		    failureRedirect: "/login"
+		}));
+
+// *** LOGOUT ***
+        app.get("/logout", function(req, res){
+          req.logout();
+          res.redirect("/");
+        });
 
 // *** SIGNUP ***
 		app.get("/signup", function(req, res){
+			if(req.isAuthenticated()) {
+				console.log("user is AUTHENTICATED");
+				res.redirect("/main");
+			} else {
+				res.render("signup.ejs");
+			}
 			res.render("signup.ejs");
 		});
 
-		app.post('/signup', function(req,res) {
-			console.log(req.body.firstname, req.body.lastname, 
-						req.body.username, req.body.password );	
-			res.render("signup.ejs");
+		app.post("/signup", function(req, res) {
+			// create a new user and and redirect to "/login"
+			// to allow the user login
+			console.log(req.body.firstname, req.body.lastname, req.body.username, req.body.password);
+			models.User.createNewUser({
+			    firstname: req.body.firstname,
+			    lastname: req.body.lastname,
+			    username: req.body.username,
+			    password: req.body.password
+			});
+			res.redirect("/login");
 		});
 
 // *** QUESTIONS ***
 		app.get("/questions", function(req, res){
+
 			res.render("questions.ejs");
 		});
 
 // *** QUESTION ***
 		app.get("/question", function(req, res){
+
 			res.render("question.ejs");
 		});
 

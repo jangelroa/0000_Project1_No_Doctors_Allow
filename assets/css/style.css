@@ -9,9 +9,35 @@ a.navbar-brand {
 
 .container {
 	margin-top: 60px;
+	background-color: rgba(55, 152, 55, 0.87);
+	border-radius: 20px;
+	padding: 40px;
 }
 
 #brand {
 	font-size: 2em;
 }
 
+body {
+	background-image: url("../images/Grass-Background-3.jpg");
+	/*background-repeat: no-repeat;*/
+	/*background-position: center;*/
+	background-size: 100%;
+	color: rgba(0,0,0,1);
+}
+
+#marked {
+	background-color: yellow:;
+}
+
+.bigger {
+	/*font-size: 20px;*/
+}
+
+.border-white {
+	border: 1px solid #aaa;  
+}
+
+.bigger_text {
+	font-size: 1.5em;
+}
