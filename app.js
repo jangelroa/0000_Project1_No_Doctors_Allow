@@ -175,6 +175,25 @@ app.use(express.static(__dirname + '/assets'));
 			});
 		});
 
+// *** CREATE_NEW_QUESTION ***
+		app.get("/create_new_question", function(req, res){
+
+			res.render("create_new_question.ejs", {
+				authenticated: req.isAuthenticated()
+			});
+		});
+
+		app.post("/create_new_question", function(req, res) {
+			// create a new user and and redirect to "/login"
+			// to allow the user login
+			console.log(req.body.question_title, req.body.question_body);
+			models.Question.createNewQuestion({
+			    question_title: req.body.question_title,
+			    question_body: req.body.question_body
+			});
+			res.redirect("/login");
+		});
+
 
 
 /********************************************************************************/

@@ -9,6 +9,12 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+      },
+      createNewQuestion: function(question) {
+        Question.create({
+          title: question.question_title,
+          body: question.question_body
+        });
       }
     }
   });
