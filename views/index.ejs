@@ -1,7 +1,9 @@
 <% layout ('layout') %>
 
+<div class="container main_container">
+
 <!-- NAVIGATION BAR -->
-	<!-- <div class="navbar navbar-default navbar-fixed-top" rol="navigation">
+	<div class="navbar navbar-default" rol="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,36 +11,48 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a id="brand" href="#" class="navbar-brand"><span class="glyphicon glyphicon-ban-circle"></span> No Doctors Allowed <span class="glyphicon glyphicon-ban-circle"></span></a>
+				<a id="brand" href="/" class="navbar-brand"> No Doctors Allowed </a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Signup</a></li>
+					<% if (authenticated) { %>
+						<li class="last"><a href="/logout">LogOut</a></li>
+					<% } else { %> 
+						<li class="last"><a href="/login">LogIn</a></li>
+					<% } %> 
+					<!-- <li><a href="#">Signup</a></li> -->
 				</ul>
 			</div>
 		</div>
-	</div> -->
+	</div>
 <!-- /NAVIGATION BAR -->
-<div class="container">
+
+
+
+
+
+
+
+
+
 
 	<div class="text-center">
-		<h2><span class="glyphicon glyphicon-ban-circle"></span></h2>
+		<h1><span class="glyphicon glyphicon-ban-circle"></span></h1>
 		<h1>No Doctors Allowed</h1>
 		<h3>Healing the natural way</h3>
 	</div>
 	<p class="lead" > 
-		Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. 
+		Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. 
 	</p>
 	<p class="lead" > 
-		Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. 
+		Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. 
 	</p>
 	<form class="text-center" method="POST" action="/main">
 		<input type="text" placeholder="Insert your keywords" name="search_string">
 		<button ><span class="glyphicon glyphicon-search"></span> Search</button>
 	</form>
 	<p class="lead" > 
-		Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. Here Iam going to insert a lot of text. 
+		Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. 
 	</p>
 
 

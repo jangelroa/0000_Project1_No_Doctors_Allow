@@ -7,7 +7,7 @@ a.navbar-brand {
     font-family: 'YourFontName', 'Arial';
 }
 
-.container {
+.main_container{
 	margin-top: 60px;
 	background-color: rgba(55, 152, 55, 0.87);
 	border-radius: 20px;
@@ -16,6 +16,19 @@ a.navbar-brand {
 
 #brand {
 	font-size: 2em;
+}
+
+ul.nav.navbar-nav.navbar-right li {
+	background-color: rgba(173, 250, 173, 1);
+}
+
+ul.nav.navbar-nav.navbar-right li.last {
+	background-color: rgba(173, 250, 173, 1);
+	margin-right: 70px;
+}
+
+ul.nav.navbar-nav.navbar-right li:hover {
+	background-color: rgba(153, 230, 153, 1);
 }
 
 body {
@@ -41,3 +54,32 @@ body {
 .bigger_text {
 	font-size: 1.5em;
 }
+
+h1 {
+	font-family: 'YourFontName', 'Arial';
+	font-size: 4em;
+	color: rgba(101, 30, 113, 0);
+	text-shadow: 5px 5px 5px #113C13;
+}
+
+h1.a_litle_small {
+	font-size: 3em;
+}
+
+.block {
+	background-color: rgba(250,250,250,1);
+	border-radius: 20px;
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
+	padding: 50px;
+	border: 1px solid gray;
+}
+
+
+
+
+
+
+
+
+
+

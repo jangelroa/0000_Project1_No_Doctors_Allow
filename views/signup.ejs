@@ -1,11 +1,31 @@
 <% layout ('layout') %>
 <!-- Modal -->
 
-<div class="container">
+<div class="container main_container">
   
-  <div class="text-right">
-    <a class="btn btn-sm btn-success border-white" href="/">Go Home</a>
+<!-- NAVIGATION BAR -->
+  <div class="navbar navbar-default" rol="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="brand" href="/" class="navbar-brand"> No Doctors Allowed </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/login">LogIn</a></li>
+          <li class="last"><a href="/main">Home</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
+<!-- /NAVIGATION BAR -->
+  
+
+  
 	<div class="modal-dialog margin-top-100">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -69,6 +89,14 @@
 
 		</div>
 	</div>
+
+
+  <div class="text-center">
+    <h1 class="a_litle_small">No Doctors Allowed</h1>
+  </div>
+
+
+
 </div>
-<!--/Modal-->
+
 

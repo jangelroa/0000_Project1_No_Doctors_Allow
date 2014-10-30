@@ -94,7 +94,9 @@ app.use(express.static(__dirname + '/assets'));
 
 // *** MAIN ***
 		app.get("/main", function(req, res){
-			res.render("index.ejs");
+			res.render("index.ejs", {
+				authenticated: req.isAuthenticated()
+			});
 		});
 
 		app.post('/main', function(req,res) {
@@ -103,7 +105,11 @@ app.use(express.static(__dirname + '/assets'));
 			// query those keys in "title" in the "Question" table,
 			// and redirect to "/questions" and show the questions selected
 			// res.redirect("/questions");	
-			res.render("questions.ejs",{ });
+
+			res.render("questions.ejs", {
+				authenticated: req.isAuthenticated(),
+				search_string: req.body.search_string
+			});
 		});
 
 // *** LOGIN ***
@@ -154,15 +160,17 @@ app.use(express.static(__dirname + '/assets'));
 		});
 
 // *** QUESTIONS ***
-		app.get("/questions", function(req, res){
+		// app.get("/questions", function(req, res){
 
-			res.render("questions.ejs");
-		});
+		// 	res.render("questions.ejs");
+		// });
 
 // *** QUESTION ***
 		app.get("/question", function(req, res){
 
-			res.render("question.ejs");
+			res.render("question.ejs", {
+				authenticated: req.isAuthenticated()
+			});
 		});
 
 

@@ -1,25 +1,46 @@
 <% layout ('layout') %>
 
-<div class="container">
-	<div class="text-right">
-	    <a class="btn btn-sm btn-success border-white" href="/">Go Home</a>
-	</div>
-	<div class="text-right">
-	    <a href="/logout" class="btn btn-sm btn-success border-white">LogOut</a>
-	</div>
-	
+<div class="container main_container">
 
-	<ul class="bigger_text">
-		<li>Question 1</li>
-		<li>Question 2</li>
-		<li>Question 3</li>
-		<li>Question 4</li>
-		<li>Question 5</li>
-		<li>Question 6</li>
-		<li>Question 7</li>
-		<li>Question 8</li>
-		<li>Question 9</li>
-		<li>Question 10</li>
-		<li>Question 11</li>
-	</ul>
+<!-- NAVIGATION BAR -->
+	<div class="navbar navbar-default" rol="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a id="brand" href="/" class="navbar-brand"> No Doctors Allowed </a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<% if (authenticated) { %>
+						<li><a href="/logout">LogOut</a></li>
+					<% } else { %> 
+						<li><a href="/login">LogIn</a></li>
+					<% } %> 
+						<li class="last"><a href="/main">Home</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!-- /NAVIGATION BAR -->
+
+
+	<div class="block">
+		<ul class="bigger_text">
+			<li>Question 1</li>
+			<li>Question 2</li>
+			<li>Question 3</li>
+			<li>Question 4</li>
+			<li>Question 5</li>
+			<li>Question 6</li>
+			<li>Question 7</li>
+			<li>Question 8</li>
+			<li>Question 9</li>
+			<li>Question 10</li>
+			<li>Question 11</li>
+		</ul>
+	</div>
 </div>
