@@ -120,6 +120,7 @@ app.use(express.static(__dirname + '/assets'));
 				console.log("user is AUTHENTICATED");
 				res.redirect("/main");
 			} else {
+				console.log("user is NOT AUTHENTICATED");
 				res.render("login.ejs");
 			}
 		});
@@ -141,6 +142,7 @@ app.use(express.static(__dirname + '/assets'));
 				console.log("user is AUTHENTICATED");
 				res.redirect("/main");
 			} else {
+				console.log("user is NOT AUTHENTICATED");
 				res.render("signup.ejs");
 			}
 			res.render("signup.ejs");
