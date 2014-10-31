@@ -39,7 +39,16 @@
 			</ul>
 		</ul>
 		
+		
+		<% if (authenticated) { %>
+			<div class="text-center margin_top20 margin_bottom20">
+				<a class="btn btn-primary btn-primary" href="/<%= user_id %>/create_new_question">Create New Question</a>
+			</div>
+		<% } %>
+
+
 	</div>
+
 
 
 

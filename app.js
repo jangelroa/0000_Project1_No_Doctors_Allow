@@ -113,10 +113,20 @@ app.use(express.static(__dirname + '/assets'));
 			// and redirect to "/questions" and show the questions selected
 			// res.redirect("/questions");	
 
-			res.render("questions.ejs", {
-				authenticated: req.isAuthenticated(),
-				search_string: req.body.search_string
-			});
+			var authenticated = req.isAuthenticated();
+
+			if(authenticated) {
+				res.render("questions.ejs", {
+					authenticated: authenticated,
+					search_string: req.body.search_string,
+					user_id: req.user.id
+				});
+			} else {
+				res.render("questions.ejs", {
+					authenticated: authenticated,
+					search_string: req.body.search_string
+				});
+			}
 		});
 
 // *** LOGIN ***
@@ -178,9 +188,19 @@ app.use(express.static(__dirname + '/assets'));
 // *** QUESTION ***
 		app.get("/question", function(req, res){
 
-			res.render("question.ejs", {
-				authenticated: req.isAuthenticated()
-			});
+
+			var authenticated = req.isAuthenticated();
+
+			if(authenticated) {
+				res.render("question.ejs", {
+					authenticated: req.isAuthenticated(),
+					user_id: req.user.id
+				});
+			} else {
+				res.render("question.ejs", {
+					authenticated: req.isAuthenticated()
+				});
+			}
 		});
 
 // *** CREATE_NEW_QUESTION ***
@@ -202,12 +222,18 @@ app.use(express.static(__dirname + '/assets'));
 			// create a new question and and redirect to the new created question
 			console.log(req.body.qu_title, req.body.qu_body, req.params.user_id);
 			
-			models.Question.createNewQuestion({
-			    qu_title: req.body.qu_title,
-			    qu_body: req.body.qu_body,
-			    qu_user_id: parseInt(req.params.user_id, 10)
-			});
-			res.redirect("/main");
+			var userId = parseInt(req.params.user_id, 10);
+			
+			if(req.isAuthenticated() && userId === req.user.id){
+				models.Question.createNewQuestion({
+				    qu_title: req.body.qu_title,
+				    qu_body: req.body.qu_body,
+				    qu_user_id: parseInt(req.params.user_id, 10)
+				});
+				res.redirect("/main");
+			} else {
+				res.redirect("/main");
+			}
 		});
 
 
