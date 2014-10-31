@@ -176,22 +176,25 @@ app.use(express.static(__dirname + '/assets'));
 		});
 
 // *** CREATE_NEW_QUESTION ***
-		app.get("/create_new_question", function(req, res){
+		app.get("/:user_id/create_new_question", function(req, res){
 
+			console.log(req.params.user_id);
 			res.render("create_new_question.ejs", {
-				authenticated: req.isAuthenticated()
+				authenticated: req.isAuthenticated(),
+				user_id: req.params.user_id
 			});
 		});
 
-		app.post("/create_new_question", function(req, res) {
-			// create a new user and and redirect to "/login"
-			// to allow the user login
-			console.log(req.body.question_title, req.body.question_body);
+		app.post("/:user_id/create_new_question", function(req, res) {
+			// create a new question and and redirect to the new created question
+			console.log(req.body.qu_title, req.body.qu_body, req.params.user_id);
+
 			models.Question.createNewQuestion({
-			    question_title: req.body.question_title,
-			    question_body: req.body.question_body
+			    qu_title: req.body.qu_title,
+			    qu_body: req.body.qu_body,
+			    qu_user_id: req.params.user_id
 			});
-			res.redirect("/login");
+			res.redirect("/main");
 		});
 
 

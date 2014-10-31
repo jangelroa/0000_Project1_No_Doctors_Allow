@@ -12,8 +12,9 @@ module.exports = function(sequelize, DataTypes) {
       },
       createNewQuestion: function(question) {
         Question.create({
-          title: question.question_title,
-          body: question.question_body
+          title: question.qu_title,
+          body: question.qu_body,
+          qu_user_id: question.qu_user_id
         });
       }
     }
