@@ -73,9 +73,18 @@ right now I can create questions using:
 now I want to make a link or links to facilitate the user this
 url ("/:user_id/create_new_question").
 
-solution: put links in main (index.ejs), questions.ejs and question.ejs, only
-if the user is authenticated
+	solution: put links in main (index.ejs), questions.ejs and question.ejs, only
+	if the user is authenticated
 
+
+Now I want to see all the questions in my database in questions.ejs
+
+	steps:
+	- query the Questions table and get all the questions titles
+	solution: 
+
+
+I need to do associations
 
 
 

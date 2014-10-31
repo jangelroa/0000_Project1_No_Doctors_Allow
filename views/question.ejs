@@ -31,6 +31,17 @@
 
 	<div class="block">
 		<ul class="bigger_text">
+
+			<li><%= question.title %></li>
+
+			<ul>
+				<!-- answers.forEach(function(element){ -->
+					<li> %= element.an_body %</li>
+				<!-- }); -->
+			</ul>
+
+
+
 			<li>Question 1</li>
 			<ul>
 				<li>Answer 1</li>
@@ -39,9 +50,10 @@
 			</ul>
 		</ul>
 		
-		
+
 		<% if (authenticated) { %>
 			<div class="text-center margin_top20 margin_bottom20">
+				<a class="btn btn-primary btn-success" href="/<%= user_id %>/answer_this_question">Answer This Question</a>
 				<a class="btn btn-primary btn-primary" href="/<%= user_id %>/create_new_question">Create New Question</a>
 			</div>
 		<% } %>

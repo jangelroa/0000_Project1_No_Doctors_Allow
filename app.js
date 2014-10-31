@@ -82,6 +82,7 @@ app.use(express.static(__dirname + '/assets'));
 // MY HEROKU ADDRESS IS https://obscure-savannah-8786.herokuapp.com/
 
 // var isAuthenticated = false;
+var question;
 
 // *** ROOT ***
 		app.get("/", function(req, res){
@@ -102,29 +103,6 @@ app.use(express.static(__dirname + '/assets'));
 			} else {
 				res.render("index.ejs", {
 					authenticated: req.isAuthenticated()
-				});
-			}
-		});
-
-		app.post('/main', function(req,res) {
-			console.log(req.body.search_string);
-			// get the "search_string", get the search keys from it, 
-			// query those keys in "title" in the "Question" table,
-			// and redirect to "/questions" and show the questions selected
-			// res.redirect("/questions");	
-
-			var authenticated = req.isAuthenticated();
-
-			if(authenticated) {
-				res.render("questions.ejs", {
-					authenticated: authenticated,
-					search_string: req.body.search_string,
-					user_id: req.user.id
-				});
-			} else {
-				res.render("questions.ejs", {
-					authenticated: authenticated,
-					search_string: req.body.search_string
 				});
 			}
 		});
@@ -180,27 +158,85 @@ app.use(express.static(__dirname + '/assets'));
 		});
 
 // *** QUESTIONS ***
-		// app.get("/questions", function(req, res){
+		app.get("/questions", function(req, res){
+			res.render("questions.ejs", req.flash('info')[0]);
+		});
 
-		// 	res.render("questions.ejs");
-		// });
+		// this form is in "/main" and has an action="/questions"
+		app.post('/questions', function(req,res) {
+			// console.log(req.body.search_string);
+
+			// get the "search_string", get the search keys from it, 
+			// query those keys in "title" in the "Question" table,
+			// and redirect to "/questions" and show the questions selected
+			// res.redirect("/questions");	
+
+			models.Question.findAll().then(function(questions) { 
+	            
+				var templateData = { 
+					authenticated: req.isAuthenticated(),
+					search_string: req.body.search_string,
+					questions: questions
+				};
+
+				if(templateData.authenticated) {
+					templateData.user_id = req.user.id;
+				}
+
+				req.flash('info', templateData);
+				res.redirect("/questions");
+            });
+		});
+
+
+
+
+
+
+
 
 // *** QUESTION ***
-		app.get("/question", function(req, res){
+		app.get("/:qu_id/question", function(req, res){
+
+			models.Question.find({where: {id: req.params.qu_id}}).then(function(question) {
+				var templateData = { 
+						authenticated: req.isAuthenticated(),
+						question: question,
+						answers: ["A1", "A2", "A3"]
+					};
+
+				if(templateData.authenticated) {
+					templateData.user_id = req.user.id;
+				}
+
+				req.flash('question', templateData.question);
+				res.render("question.ejs", templateData);
+			});
+
+			// var templateData = { 
+			// 		authenticated: req.isAuthenticated(),
+			// 	};
+
+			// if(templateData.authenticated) {
+			// 	templateData.user_id = req.user.id;
+			// }
+			// res.render("question.ejs", templateData);
 
 
-			var authenticated = req.isAuthenticated();
 
-			if(authenticated) {
-				res.render("question.ejs", {
-					authenticated: req.isAuthenticated(),
-					user_id: req.user.id
-				});
-			} else {
-				res.render("question.ejs", {
-					authenticated: req.isAuthenticated()
-				});
-			}
+
+			// var authenticated = req.isAuthenticated();
+
+			// if(authenticated) {
+			// 	res.render("question.ejs", {
+			// 		authenticated: req.isAuthenticated(),
+			// 		user_id: req.user.id
+			// 	});
+			// } else {
+			// 	res.render("question.ejs", {
+			// 		authenticated: req.isAuthenticated()
+			// 	});
+			// }
 		});
 
 // *** CREATE_NEW_QUESTION ***
@@ -223,18 +259,60 @@ app.use(express.static(__dirname + '/assets'));
 			console.log(req.body.qu_title, req.body.qu_body, req.params.user_id);
 			
 			var userId = parseInt(req.params.user_id, 10);
-			
+
 			if(req.isAuthenticated() && userId === req.user.id){
 				models.Question.createNewQuestion({
 				    qu_title: req.body.qu_title,
 				    qu_body: req.body.qu_body,
-				    qu_user_id: parseInt(req.params.user_id, 10)
+				    qu_user_id: userId
 				});
-				res.redirect("/main");
+				res.redirect("/" + userId + "/question");
 			} else {
 				res.redirect("/main");
 			}
 		});
+
+// *** ANSWER_THIS__QUESTION ***
+		app.get("/:user_id/answer_this_question", function(req, res){
+
+			var userId = parseInt(req.params.user_id, 10);
+			if(!question){
+				question = req.flash('question')[0];
+			}
+
+			if(req.isAuthenticated() && userId === req.user.id){
+				res.render("answer_this_question.ejs", {
+					authenticated: req.isAuthenticated(),
+					user_id: userId,
+					question: question
+				});
+			} else {
+				res.redirect("/main");
+			}
+		});
+
+		app.post("/:user_id/answer_this_question", function(req, res) {
+			// create a new question and and redirect to the new created question
+			console.log(req.body.qu_title, req.body.qu_body, req.params.user_id);
+			
+			var userId = parseInt(req.params.user_id, 10);
+
+			if(req.isAuthenticated() && userId === req.user.id){
+				models.Answer.createNewAnswer({
+				    an_body: req.body.an_body,
+				    an_user_id: parseInt(req.params.user_id, 10)
+				});
+				res.redirect("/" + userId + "/question"));
+			} else {
+				res.redirect("/main");
+			}
+		});
+
+
+
+
+
+
 
 
 

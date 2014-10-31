@@ -30,17 +30,11 @@
 
 	<div class="block">
 		<ul class="bigger_text">
-			<li>Question 1</li>
-			<li>Question 2</li>
-			<li>Question 3</li>
-			<li>Question 4</li>
-			<li>Question 5</li>
-			<li>Question 6</li>
-			<li>Question 7</li>
-			<li>Question 8</li>
-			<li>Question 9</li>
-			<li>Question 10</li>
-			<li>Question 11</li>
+
+			<%  questions.forEach(function(element) { %>
+					<li><a href="/<%= element.id %>/question"> <%= element.title %></a></li>
+			<%	}); %>
+
 		</ul>
 
 		<% if (authenticated) { %>
@@ -49,7 +43,7 @@
 		</div>
 		<% } %>
 
-		
+
 	</div>
 
 </div>
