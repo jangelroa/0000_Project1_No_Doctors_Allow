@@ -1,3 +1,15 @@
+.margin_top20 {
+	margin-top: 20px;
+}
+
+.margin_bottom20 {
+	margin-bottom: 20px;
+}
+
+.margin_top40 {
+	margin-top: 40px;
+}
+
 @font-face {
     font-family: 'YourFontName'; /*a name to be used later*/
     src: url('/badaboom_bb/BADABB__.ttf'); /*URL to font*/

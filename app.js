@@ -94,9 +94,16 @@ app.use(express.static(__dirname + '/assets'));
 
 // *** MAIN ***
 		app.get("/main", function(req, res){
-			res.render("index.ejs", {
-				authenticated: req.isAuthenticated()
-			});
+			if(req.isAuthenticated()) {
+				res.render("index.ejs", {
+					authenticated: req.isAuthenticated(),
+					user_id: req.user.id
+				});
+			} else {
+				res.render("index.ejs", {
+					authenticated: req.isAuthenticated()
+				});
+			}
 		});
 
 		app.post('/main', function(req,res) {
@@ -118,6 +125,7 @@ app.use(express.static(__dirname + '/assets'));
 			// else render "login.ejs"
 			if(req.isAuthenticated()) {
 				console.log("user is AUTHENTICATED");
+				console.log(req.user.id);
 				res.redirect("/main");
 			} else {
 				console.log("user is NOT AUTHENTICATED");
@@ -178,21 +186,26 @@ app.use(express.static(__dirname + '/assets'));
 // *** CREATE_NEW_QUESTION ***
 		app.get("/:user_id/create_new_question", function(req, res){
 
-			console.log(req.params.user_id);
-			res.render("create_new_question.ejs", {
-				authenticated: req.isAuthenticated(),
-				user_id: req.params.user_id
-			});
+			var userId = parseInt(req.params.user_id, 10);
+
+			if(req.isAuthenticated() && userId === req.user.id){
+				res.render("create_new_question.ejs", {
+					authenticated: req.isAuthenticated(),
+					user_id: userId
+				});
+			} else {
+				res.redirect("/main");
+			}
 		});
 
 		app.post("/:user_id/create_new_question", function(req, res) {
 			// create a new question and and redirect to the new created question
 			console.log(req.body.qu_title, req.body.qu_body, req.params.user_id);
-
+			
 			models.Question.createNewQuestion({
 			    qu_title: req.body.qu_title,
 			    qu_body: req.body.qu_body,
-			    qu_user_id: req.params.user_id
+			    qu_user_id: parseInt(req.params.user_id, 10)
 			});
 			res.redirect("/main");
 		});

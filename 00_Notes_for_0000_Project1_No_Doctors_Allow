@@ -1,0 +1,107 @@
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							my_models_creation
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+my_models_creation
+
+sequelize model:create --name User --attributes firstname:string,lastname:string,username:string,password:string
+
+sequelize model:create --name Question --attributes title:string,body:string,qu_user_id:integer
+
+sequelize model:create --name Answer --attributes an_body:string,an_user_id:integer
+
+sequelize model:create --name Favorited_question --attributes fq_user_id:integer,fq_question_id:integer
+
+sequelize model:create --name Voted_question --attributes vq_user_id:integer,vq_question_id:integer
+
+sequelize model:create --name Favorited_answer --attributes fa_user_id:integer,fa_answer_id:integer
+
+sequelize model:create --name Voted_answer --attributes va_user_id:integer,va_answer_id:integer
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							git logs   so far
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    Made work completely create_new_question
+
+    Created create_new_question.ejs,
+    and the class function createNewQuestion in question.js model,
+    I could create new questions but without the qu_user_id
+
+    minor changes in app.js
+
+
+    Worked in css and front end
+
+    Worked in the front end
+    Authentication with password Done
+
+    Changed config/config.json
+    createdb no_doctors_allowed_development
+    created models -> User, Question, Answer, Favorited_question, Voted_question, Favorited_answer, Voted_answer
+    sequelize db:migrate
+
+    questions.ejs, question.ejs added
+
+    models/index.js changed to work with heroku,
+    signup.ejs added
+
+    login added
+
+    installed sequelized-cli
+
+    configure app to use port env. var
+
+    Procfile added
+
+
+    before heroku
+
+    first commit - npm project set up
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							more_steps
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+right now I can create questions using:
+		app.post("/:user_id/create_new_question", function(req, res) {
+now I want to make a link or links to facilitate the user this
+url ("/:user_id/create_new_question").
+
+solution: put links in main (index.ejs), questions.ejs and question.ejs, only
+if the user is authenticated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -28,14 +28,6 @@
 <!-- /NAVIGATION BAR -->
 
 
-
-
-
-
-
-
-
-
 	<div class="text-center">
 		<h1><span class="glyphicon glyphicon-ban-circle"></span></h1>
 		<h1>No Doctors Allowed</h1>
@@ -51,6 +43,14 @@
 		<input type="text" placeholder="Insert your keywords" name="search_string">
 		<button ><span class="glyphicon glyphicon-search"></span> Search</button>
 	</form>
+
+	
+	<% if (authenticated) { %>
+	<div class="text-center margin_top20 margin_bottom20">
+		<a class="btn btn-primary btn-primary" href="/<%= user_id %>/create_new_question">Create New Question</a>
+	</div>
+	<% } %>
+
 	<p class="lead" > 
 		Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. Here I am going to insert a lot of text. 
 	</p>
